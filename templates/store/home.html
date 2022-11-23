@@ -1,53 +1,155 @@
 {% extends "./base.html" %}
 {% load static %}
-{% block title %}BookStore{% endblock %}
+
+
+<title>{% block title %}Home {% endblock %}</title>
+
 {% block content %}
 
+{% include 'store/includes/navbar.html' %}
 
-<main>
-
-  <section class="py-5 text-center container">
-    <div class="row py-lg-3">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="h1 fw-bold">Search, Read, Buy, Review</h1>
-        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator,
-          etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
-        <p>
-          <a href="#" class="btn btn-primary my-2">Make an account</a>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <div class="album py-5 bg-light">
-    <div class="container">
-
-      <div class="pb-3 h5">All Books</div>
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
-
-        {% for product in products %}
-
-        <div class="col">
-          <div class="card shadow-sm">
-            <img class="img-fluid" alt="Responsive image" src="{{ product.image.url }}">
-            <div class="card-body">
-              <p class="card-text">
-                <a class="text-dark text-decoration-none" href="{{ product.get_absolute_url }}">{{ product.title }}</a>
-              </p>
-              <div class="d-flex justify-content-between align-items-center">
-                <small class="text-muted">9min read</small>
+    <!-- Hero section -->
+    <div class="pt-16 pb-80 sm:pt-24 sm:pb-40 lg:pt-40 lg:pb-48">
+      <div class="relative mx-auto max-w-7xl px-4 sm:static sm:px-6 lg:px-8">
+        <div class="sm:max-w-lg">
+          <h1
+            class="font text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl"
+          >
+            Summer styles are finally here
+          </h1>
+          <p class="mt-4 text-xl text-gray-500">
+            This year, our new summer collection will shelter you from the harsh
+            elements of a world that doesn't care if you live or die.
+          </p>
+        </div>
+        <div>
+          <div class="mt-10">
+            <!-- Decorative image grid -->
+            <div
+              aria-hidden="true"
+              class="pointer-events-none lg:absolute lg:inset-y-0 lg:mx-auto lg:w-full lg:max-w-7xl"
+            >
+              <div
+                class="absolute transform sm:left-1/2 sm:top-0 sm:translate-x-8 lg:left-1/2 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-8"
+              >
+                <div class="flex items-center space-x-6 lg:space-x-8">
+                  <div
+                    class="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8"
+                  >
+                    <div
+                      class="h-64 w-44 overflow-hidden rounded-lg sm:opacity-0 lg:opacity-100"
+                    >
+                      <img
+                        src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-01.jpg"
+                        alt=""
+                        class="h-full w-full object-cover object-center"
+                      />
+                    </div>
+                    <div class="h-64 w-44 overflow-hidden rounded-lg">
+                      <img
+                        src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-02.jpg"
+                        alt=""
+                        class="h-full w-full object-cover object-center"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    class="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8"
+                  >
+                    <div class="h-64 w-44 overflow-hidden rounded-lg">
+                      <img
+                        src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-03.jpg"
+                        alt=""
+                        class="h-full w-full object-cover object-center"
+                      />
+                    </div>
+                    <div class="h-64 w-44 overflow-hidden rounded-lg">
+                      <img
+                        src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-04.jpg"
+                        alt=""
+                        class="h-full w-full object-cover object-center"
+                      />
+                    </div>
+                    <div class="h-64 w-44 overflow-hidden rounded-lg">
+                      <img
+                        src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-05.jpg"
+                        alt=""
+                        class="h-full w-full object-cover object-center"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    class="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8"
+                  >
+                    <div class="h-64 w-44 overflow-hidden rounded-lg">
+                      <img
+                        src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-06.jpg"
+                        alt=""
+                        class="h-full w-full object-cover object-center"
+                      />
+                    </div>
+                    <div class="h-64 w-44 overflow-hidden rounded-lg">
+                      <img
+                        src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-07.jpg"
+                        alt=""
+                        class="h-full w-full object-cover object-center"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+
+            <a
+              href="{% url 'store:all-products' %}"
+              class="inline-block rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-center font-medium text-white hover:bg-indigo-700"
+              >Shop Wine</a
+            >
           </div>
         </div>
-
-        {% endfor %}
-
       </div>
     </div>
+  </header>
+
+ <!-- SECTION BEST SELLERS -->
+
+
+ <section>
+
+<div class="bg-white">
+  <div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+    <h2 class="text-2xl font-bold tracking-tight text-gray-900">Best Sellers</h2>
+
+    <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-14">
+      {% for product in products %}
+      <div class="group relative">
+          <div class="max-h-fit aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md group-hover:opacity-75 lg:aspect-none lg:max-h-fit">
+            <img src="{{ product.image.url }}" alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+          </div>
+          <div class="mt-4 flex justify-between">
+            <div>
+              <h3 class="text-sm text-gray-700">
+                <a href="{% url 'store:product-detail' product.slug %}">
+                  <span aria-hidden="true" class="absolute inset-0"></span>
+                  {{ product.title }}
+                </a>
+              </h3>
+              <p class="mt-1 text-sm text-gray-500">{{ product.type|title }}</p>
+            </div>
+            <p class="text-sm font-medium text-gray-900">${{ product.price }}</p>
+          </div>
+   
+      </div>
+      {% endfor %}
+
+      <!-- More products... -->
+    </div>
   </div>
+</div>
+
+ </section>
 
 
-</main>
+ 
 
-{% endblock %}
+{% endblock%}
