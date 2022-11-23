@@ -1,4 +1,4 @@
-{% extends "./base.html" %}
+{% extends "base/base/base.html" %}
 {% load static %}
 
 
@@ -6,7 +6,7 @@
 
 {% block content %}
 
-{% include 'store/includes/navbar.html' %}
+{% include 'base/includes/navbar.html' %}
 
     <!-- Hero section -->
     <div class="pt-16 pb-80 sm:pt-24 sm:pb-40 lg:pt-40 lg:pb-48">
@@ -101,7 +101,7 @@
             </div>
 
             <a
-              href="{% url 'store:all-products' %}"
+              href="{% url 'store:product_all' %}"
               class="inline-block rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-center font-medium text-white hover:bg-indigo-700"
               >Shop Wine</a
             >
@@ -129,7 +129,7 @@
           <div class="mt-4 flex justify-between">
             <div>
               <h3 class="text-sm text-gray-700">
-                <a href="{% url 'store:product-detail' product.slug %}">
+                <a href="{% url 'store:product_detail' product.slug %}">
                   <span aria-hidden="true" class="absolute inset-0"></span>
                   {{ product.title }}
                 </a>

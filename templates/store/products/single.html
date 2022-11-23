@@ -1,48 +1,161 @@
-{% extends "store/base.html" %}
-{% load static %}
-{% block title %}
-{{ product.name }}
-{% endblock %}
-{% block content %}
-<div class="container">
-    <main class="pt-5">
-        <div class="row g-3">
-            <div class="col-md-5 col-lg-5 order-md-first bg-light">
-                <img class="img-fluid mx-auto d-block" width="200px" alt="Responsive image" src="{{ product.image.url }}">
-            </div>
-            <div class="col-md-7 col-lg-7 ps-md-3 ps-lg-5">
-                <h1 class="mb-0 h4">{{ product.title }}</h1>
-                <p><span class="lead">{{ product.author }}</span> (Author)</p>
-                <p>{{ product.description|slice:":355" }}...</p>
-                <div class="border">
-                    <div class="col border-bottom">
-                        <div class="row p-3">
-                            <div class="col-6">Hardback</div>
-                            <div class="col-6 text-end"><span class="h4 fw-bold">£{{ product.price }}</span></div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="row p-3">
-                            <div class="col-6">
-                                <label for="select">Qty</label>
-                                <select id="select">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                </select>
+{% extends "base/base/base.html" %}
+{% block content %} 
+<div>
+{% include 'base/includes/navbar.html' %}
 
-                            </div>
-                            <div class="col-6 text-end">
-<button type="button" id="add-button" value="{{product.id}}" class="btn btn-secondary btn-sm">Add to basket</button></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="bg-white escape">
+  <div
+    class="mx-auto max-w-2xl py-16 px-4 sm:py-5 sm:px-6 lg:max-w-7xl lg:px-8"
+  >
+    <div class="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
+      <!-- Image gallery -->
+      <div class="flex flex-col-reverse">
+        <div class="aspect-w-1 aspect-h-1 w-full">
+          <!-- Tab panel, show/hide based on tab state. -->
+          <div
+            id="tabs-1-panel-1"
+            aria-labelledby="tabs-1-tab-1"
+            role="tabpanel"
+            tabindex="0"
+          >
+            <img
+              src="{{ product.image.url }}"
+              alt="Image of wine for sale."
+              class="h-full w-full object-cover object-center sm:rounded-lg"
+            />
+          </div>
+
+          <!-- More images... -->
         </div>
-    </main>
+      </div>
 
+      <!-- Product info -->
+      <div class="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">
+        <h1 class="text-3xl font-bold tracking-tight text-gray-900">
+          {{ product.title }}
+        </h1>
+
+        <div class="mt-3">
+          <h2 class="sr-only">Product information</h2>
+          <p class="text-3xl tracking-tight text-gray-900">
+            ${{ product.price }}
+          </p>
+      
+        </div>
+        {% if product.best_seller == True %}
+        <p class="pt-3 text-gray-600">Best seller</p>
+        {% endif %}
+
+         <!-- ADD TO BASKET -->
+
+        
+     
+          <div class="flex justify-between">
+            <div class="py-3">
+              <label class="pr-4">Quantity</label>
+              <select id="select" class="rounded-md">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+            
+            <div class="py-3">
+              <button type="button" id="addbutton" value="{{product.id}}"  class="w-full add-btn flex justify-center items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Add to basket</button>
+            </div>
+       
+
+        
+
+        </div>
+
+        <div class="mt-6">
+          <h3 class="sr-only">Description</h3>
+        </div>
+
+        <section aria-labelledby="details-heading">
+          <h2 id="details-heading" class="sr-only">Additional details</h2>
+
+          <div class="divide-y divide-gray-200 border-t">
+            <div>
+              <h3>
+          
+
+              </h3>
+              <div class="pt-2 pb-6" id="disclosure-1">
+                <div class="space-y-6 text-base text-gray-700 pb-5">
+                  <p class="text-lg text-black font-medium">Description</p>
+                  <p>{{ product.description }}</p>
+                </div>
+                <div class="divide-y divide-gray-200 border-b">
+                  <div>
+        
+              </div>
+            </div>
+
+           
+
+            
+
+
+
+
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
 </div>
+
+<!-- You may also like -->
+
+<section>
+  <div class="bg-white">
+    <div class="mx-auto max-w-2xl px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+      <h2 class="text-2xl font-bold tracking-tight text-gray-900">
+        You might also like
+      </h2>
+
+      <div
+        class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8"
+      >
+        {% for product in product_gallery %}
+        <div class="group relative">
+          <div
+            class="min-h-fit aspect-w-1 w-full overflow-hidden rounded-md group-hover:opacity-75 lg:aspect-none lg:h-fit"
+          >
+            <img
+              src="{{ product.image.url }}"
+              alt="Front of men&#039;s Basic Tee in black."
+              class="h-full w-full object-cover object-center lg:h-full lg:w-full"
+            />
+          </div>
+          <div class="flex justify-between">
+            <div>
+              <h3 class="mt-4 text-sm text-gray-700">
+                <a href="{{ product.get_absolute_url }}">
+                  <span aria-hidden="true" class="absolute inset-0"></span>
+                  {{ product.title }}
+                </a>
+              </h3>
+              <p class="mt-1 text-sm text-gray-500">{{ product.type|title }}</p>
+            </div>
+            <p class="mt-4 text-sm font-medium text-gray-900">
+              ${{ product.price }}
+            </p>
+          </div>
+       
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  {% include 'base/includes/footer.html' %} 
+  {% endblock %}
+</section>
 
 <script>
     $(document).on('click', '#add-button', function (e) {
@@ -64,4 +177,3 @@
     })
 </script>
 
-{% endblock %}

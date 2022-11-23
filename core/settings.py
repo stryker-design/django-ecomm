@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     # Tailwind
     'tailwind',
     'theme',
+    'django_browser_reload',
 
     # Crispy tailwind
     "crispy_forms",
@@ -38,6 +39,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
 
 ]
 
