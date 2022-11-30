@@ -1032,7 +1032,7 @@
   
                <!-- BASKET -->
                <div id="basket" class="ml-4 flow-root lg:ml-6">
-                <a href="#" class="group -m-2 flex items-center p-2">
+                <a href="{% url 'basket:basket_summary' %}" class="group -m-2 flex items-center p-2">
                   <!-- Heroicon name: outline/shopping-bag -->
                   <svg
                     class="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
@@ -1049,9 +1049,19 @@
                       d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
                     />
                   </svg>
+                  {% with total_qty=basket|length %}
                   <span
+                    id="basket-qty"
                     class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800"
-                    >0</span
+                    >
+                    {% if total_qty > 0 %}
+                      {{ total_qty }}
+                      {% else %}
+                      0
+                    {% endif %}
+                  {% endwith %} 
+                    
+                    </span
                   >
                   <span class="sr-only">items in cart, view bag</span>
                 </a>   
@@ -1059,24 +1069,21 @@
               
               <!-- CART DROPDOWN -->
               <div id="basket-dropdown" class="hidden absolute inset-x-0 mt-px bg-gray-100 pb-6 shadow-lg sm:px-2 lg:top-full lg:left-auto lg:right-5 lg:-mr-1.5 lg:w-80 lg:rounded-lg lg:ring-1 lg:ring-black lg:ring-opacity-5">
-                <h2 class="sr-only">Shopping Cart</h2>
+                <h2 class="sr-only">Basket</h2>
   
                 <div class="mx-auto max-w-2xl px-4">
                   <!-- FOR LOOP HERE -->
-                  <ul role="list" class="divide-y divide-gray-200">
-                    {% for item in items %}
-  
-                    
+                  <ul role="list" class="divide-y divide-gray-200">  
                     <li class="flex items-center py-6">
-                      <img src="{{ item.product.image.url }}" alt="Item in shopping bag" class="h-16 w-16 flex-none rounded-md border border-gray-200">
+                      <!-- <img src="" alt="Item in shopping bag" class="h-16 w-16 flex-none rounded-md border border-gray-200"> -->
                       <div class="ml-4 flex-auto">
                         <h3 class="font-medium text-gray-900">
-                          <a href="#">{{ item.product.title }}</a>
+                          <a href="#"></a>
                         </h3>
-                        <p class="text-gray-500">{{ item.product.category }}</p>
+                        <p class="text-gray-500"></p>
                       </div>
                     </li>
-                    {% endfor %}
+                
                   </ul>
                   <!-- END LOOP -->
   
@@ -1104,7 +1111,7 @@
                 <div class="px-4 py-3" role="none">
                   <p class="text-sm" role="none">Categories</p>
                 </div>
-                {% for category in category_dropdown %}
+                {% for category in categories %}
                 <div class="py-1" role="none">
                   <a href="{{ category.get_absolute_url }}" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">{{ category.name|title }}</a>
                 </div>

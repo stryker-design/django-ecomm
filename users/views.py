@@ -13,7 +13,7 @@ def registration(request):
         if form.is_valid():
             user = form.save()
             login(request, user, 'django.contrib.auth.backends.ModelBackend')
-            return redirect('core:home')
+            return redirect('store:home')
         messages.error(request, "Unsuccessful registration. Invalid information.")
 
     context = {'form': form}
@@ -30,7 +30,7 @@ def login_request(request):
             user =authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('core:home')
+                return redirect('store:home')
             else:
                 messages.error(request,"Invalid username or password.")
 
@@ -39,7 +39,7 @@ def login_request(request):
 
 def logout_request(request):
     logout(request)
-    return redirect('core:home')
+    return redirect('store:home')
 
 
 def account(request):
@@ -55,7 +55,7 @@ def manage_account(request):
             form.save()
             return redirect('account') 
         else:
-            return redirect('core:home')
+            return redirect('store:home')
     else:
         form = ManageAccountForm(instance=request.user)
         context = {'form': form}

@@ -52,13 +52,13 @@
      
           <div class="flex justify-between">
             <div class="py-3">
-              <label class="pr-4">Quantity</label>
+              <label for="select" class="pr-4">Quantity</label>
               <select id="select" class="rounded-md">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+                <option value="">1</option>
+                <option value="">2</option>
+                <option value="">3</option>
+                <option value="">4</option>
+                <option value="">5</option>
               </select>
             </div>
             
@@ -154,26 +154,29 @@
   </div>
 
   {% include 'base/includes/footer.html' %} 
+  <script>
+      $(document).on('click', '#addbutton', function (e) {
+          e.preventDefault();
+          console.log($('#select option:selected').text())
+          $.ajax({
+              type: 'POST',
+              url: '{% url "basket:basket_add" %}',
+              data: {
+                  productid: $('#addbutton').val(),
+                  productqty: $('#select option:selected').text(),
+                  csrfmiddlewaretoken: "{{csrf_token}}",
+                  action: 'post'
+              },
+              success: function (json) {
+                 document.getElementById("basket-qty").innerHTML = json.qty
+               
+              },
+              error: function (xhr, errmsg, err) {}
+          });
+      })
+  </script>
   {% endblock %}
 </section>
 
-<script>
-    $(document).on('click', '#add-button', function (e) {
-        e.preventDefault();
-        $.ajax({
-            type: 'POST',
-            url: '{% url "basket:basket_add" %}',
-            data: {
-                productid: $('#add-button').val(),
-                productqty: $('#select option:selected').text(),
-                csrfmiddlewaretoken: "{{csrf_token}}",
-                action: 'post'
-            },
-            success: function (json) {
-               document.getElementById("basket-qty").innerHTML = json.qty
-            },
-            error: function (xhr, errmsg, err) {}
-        });
-    })
-</script>
+
 
