@@ -63,7 +63,7 @@
             </div>
             
             <div class="py-3">
-              <button type="button" id="addbutton" value="{{product.id}}"  class="w-full add-btn flex justify-center items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Add to basket</button>
+              <button type="button" id="addbutton" value="{{product.id}}"  class="w-full add-btn flex justify-center items-center rounded-md border border-transparent bg-black px-4 py-2 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Add to basket</button>
             </div>
        
 
@@ -111,47 +111,8 @@
 
 <!-- You may also like -->
 
-<section>
-  <div class="bg-white">
-    <div class="mx-auto max-w-2xl px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-      <h2 class="text-2xl font-bold tracking-tight text-gray-900">
-        You might also like
-      </h2>
 
-      <div
-        class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8"
-      >
-        {% for product in product_gallery %}
-        <div class="group relative">
-          <div
-            class="min-h-fit aspect-w-1 w-full overflow-hidden rounded-md group-hover:opacity-75 lg:aspect-none lg:h-fit"
-          >
-            <img
-              src="{{ product.image.url }}"
-              alt="Front of men&#039;s Basic Tee in black."
-              class="h-full w-full object-cover object-center lg:h-full lg:w-full"
-            />
-          </div>
-          <div class="flex justify-between">
-            <div>
-              <h3 class="mt-4 text-sm text-gray-700">
-                <a href="{{ product.get_absolute_url }}">
-                  <span aria-hidden="true" class="absolute inset-0"></span>
-                  {{ product.title }}
-                </a>
-              </h3>
-              <p class="mt-1 text-sm text-gray-500">{{ product.type|title }}</p>
-            </div>
-            <p class="mt-4 text-sm font-medium text-gray-900">
-              ${{ product.price }}
-            </p>
-          </div>
-       
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
+
 
   {% include 'base/includes/footer.html' %} 
   <script>

@@ -437,32 +437,9 @@
             </div>
           </div>
   
-          <div class="space-y-6 border-t border-gray-200 py-6 px-4">
-            <div class="flow-root">
-              <a href="#" class="-m-2 block p-2 font-medium text-gray-900"
-                >Company</a
-              >
-            </div>
+        
   
-            <div class="flow-root">
-              <a href="#" class="-m-2 block p-2 font-medium text-gray-900"
-                >Stores</a
-              >
-            </div>
-          </div>
-  
-          <div class="space-y-6 border-t border-gray-200 py-6 px-4">
-            <div class="flow-root">
-              <a href="{% url 'users:login' %}" class="-m-2 block p-2 font-medium text-gray-900"
-                >Sign in</a
-              >
-            </div>
-            <div class="flow-root">
-              <a href="{% url 'users:registration' %}" class="-m-2 block p-2 font-medium text-gray-900"
-                >Create account</a
-              >
-            </div>
-          </div>
+       
   
          
         </div>
@@ -1129,51 +1106,16 @@
   
   
              
-                {% if user.is_authenticated %}
-                <a
-                  id="my-account"
-                  class="flex gap-2 items-center relative text-sm font-medium text-gray-500 hover:text-gray-800 hover:cursor-pointer"
-                  >My account 
-                    <svg id="my-account" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#6b7280" class=" h-4">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                    </svg> 
-                  </a
-                >
+              
+               
   
-                <div id="dropdown" class="hidden absolute top-10 z-1 mt-2 w-56  divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
-                  <div class="px-4 py-3" role="none">
-                    <p class="text-sm" role="none">Signed in as</p>
-                    <p class="truncate text-sm font-medium text-gray-900 capitalize" role="none">{{ user.username }}</p>
-                  </div>
-                  <div class="py-1" role="none">
-                    <a href="{% url 'users:account' %}" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Account settings</a>
-                    <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">Support</a>
-                    <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2">License</a>
-                  </div>
-                  <div class="py-1" role="none">
-                    <form method="POST" action="#" role="none">
-                      {% csrf_token %}
-                      <a href="{% url 'users:logout' %}" type="submit" class="text-gray-700 block w-full px-4 py-2 text-left text-sm" role="menuitem" tabindex="-1" id="menu-item-3">Sign out</a>
-                    </form>
-                  </div>
-                </div>
+        
+                
   
         
                
-                {% else %}
-                <a
-                href="{% url 'users:login' %}"
-                class="text-sm font-medium text-gray-700 hover:text-gray-800"
-                >Sign in</a
-              >
-              <span class="h-6 w-px bg-gray-200" aria-hidden="true"></span>
-  
-                <a
-                href="{% url 'users:registration' %}"
-                class="text-sm font-medium text-gray-700 hover:text-gray-800"
-                >Create account</a
-                >
-                {% endif %}
+               
+            
   
                 
               </div>
